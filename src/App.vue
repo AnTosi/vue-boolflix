@@ -19,9 +19,9 @@ export default {
   data() {
     return {
       movies: [],
-      searchText: " ",
+      searchText: "",
       searchedText: "",
-      api_url: `https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=it-IT&query=${searchedText}&page=1&include_adult=true`
+      // api_url: `https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=it-IT&query=${searchedText}&page=1&include_adult=true`
     }
   },
 
@@ -29,14 +29,14 @@ export default {
     callApi() {
       let searchedText = this.searchText;
       axios
-      .get(this.api_url)
+      .get(`https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=en-US&query=` + searchedText + `&page=1&include_adult=false`)
+      // .get(`https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=en-US&query=dog&page=1&include_adult=false`)
       .then((response) => {
         console.log(searchedText);
-        this.movies = response.data;
-        this.stringSearchText = this.searchText.toString();
-        // console.log(this.movies);
+        this.movies = response.data.results;
+        console.log(this.movies);
+        console.log(`https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=it-IT&query=` + searchedText + `&page=1&include_adult=true`);
         // console.log(this.searchText);
-        // console.log(this.stringSearchText);
         // console.log(this.api_url);
       })
     }
