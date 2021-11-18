@@ -19,24 +19,25 @@ export default {
   data() {
     return {
       movies: [],
-      searchText: "",
-      stringSearchText: "",
-      api_url: `https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=it-IT&query=${this.stringSearchText}&page=1&include_adult=true`
+      searchText: " ",
+      searchedText: "",
+      api_url: `https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=it-IT&query=${searchedText}&page=1&include_adult=true`
     }
   },
 
   methods: {
     callApi() {
-      console.log(this.searchText);
+      let searchedText = this.searchText;
       axios
       .get(this.api_url)
       .then((response) => {
+        console.log(searchedText);
         this.movies = response.data;
         this.stringSearchText = this.searchText.toString();
-        console.log(this.movies);
-        console.log(this.searchText);
-        console.log(this.stringSearchText);
-        console.log(this.api_url);
+        // console.log(this.movies);
+        // console.log(this.searchText);
+        // console.log(this.stringSearchText);
+        // console.log(this.api_url);
       })
     }
   }
