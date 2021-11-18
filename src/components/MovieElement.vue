@@ -1,17 +1,17 @@
 <template>
         
-    <ul>
+    <ul class="black_border m-2 height_200">
         <li>
-        {{title}}
+            {{title}}
         </li>
         <li>
-        {{original_title}}
+            {{original_title}}
         </li>
         <li>
-        {{language}}
+            {{language}}
         </li>
         <li>
-        {{vote}}
+            {{vote}}
         </li>            
     </ul>
       
@@ -29,7 +29,5 @@ export default {
 </script>
 
 <style lang="scss">
-    ul {
-        list-style: none;
-    }
+    @import '../assets/common.scss'
 </style>
