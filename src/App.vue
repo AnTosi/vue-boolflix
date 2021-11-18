@@ -1,17 +1,18 @@
 <template>
   <div id="app">
+    
     <div class="searchbar">
       <input v-model="searchText" type="text" placeholder="Inserisci una ricerca">
       <button @click="callApi"><i class="fas fa-search"></i></button>
-      <div class="d-flex flex-wrap">
-        <div v-for="movie in movies" :key="movie.title" class="px-2 py-2 black_border m-2">
-          <MovieElement
-            :title="movie.title"
-            :original_title="movie.original_title"
-            :language="movie.original_language"
-            :vote="movie.vote_average"
-            />       
-        </div>
+    </div>
+    <div class="d-flex flex-wrap row">
+      <div v-for="movie in movies" :key="movie.title" class="col-2 py-2 my-2">
+        <MovieElement
+          :title="movie.title"
+          :original_title="movie.original_title"
+          :language="movie.original_language"
+          :vote="movie.vote_average"
+          />       
       </div>
     </div>
   </div>
@@ -58,7 +59,9 @@ export default {
 
 <style lang="scss">
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/bootstrap/dist/css/bootstrap-grid.css";
+@import "./assets/common.scss";
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -69,7 +72,5 @@ export default {
   margin-top: 60px;
 }
 
-.black_border {
-  border: 1px solid black;
-}
+
 </style>
