@@ -20,7 +20,7 @@ export default {
     return {
       movies: [],
       searchText: "",
-      api_url: `https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=it-IT&query=dog&page=1&include_adult=true`
+      api_url: `https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=it-IT&query=` + this.searchText + `&page=1&include_adult=true`
     }
   },
 
@@ -32,6 +32,7 @@ export default {
         this.movies = response.data;
         console.log(this.movies);
         console.log(this.searchText);
+        console.log(this.api_url);
       })
     }
   }
