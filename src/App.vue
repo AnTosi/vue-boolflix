@@ -5,18 +5,12 @@
       <button @click="callApi"><i class="fas fa-search"></i></button>
       <div class="d-flex flex-wrap">
         <div v-for="movie in movies" :key="movie.title" class="px-2 py-2 black_border m-2">
-          <p>
-            {{movie.title}}
-          </p>
-          <p>
-            {{movie.original_title}}
-          </p>
-          <p>
-            {{movie.original_language}}
-          </p>
-          <p>
-            {{movie.vote_average}}
-          </p>
+          <MovieElement
+            :title="movie.title"
+            :original_title="movie.original_title"
+            :language="movie.original_language"
+            :vote="movie.vote_average"
+            />       
         </div>
       </div>
     </div>
@@ -26,10 +20,12 @@
 <script>
 
 import axios from 'axios';
+import MovieElement from './components/MovieElement.vue'
 
 export default {
   name: 'App',
   components: {
+    MovieElement
   },
   
   data() {
