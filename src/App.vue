@@ -1,58 +1,25 @@
 <template>
   <div id="app">
-    
-    <div class="searchbar">
-      <input v-model="searchText" type="text" placeholder="Inserisci una ricerca">
-      <button @click="callApi"><i class="fas fa-search"></i></button>
+    <div class="searchBar">
+      
     </div>
-    <div class="d-flex flex-wrap row">
-      <div v-for="movie in movies" :key="movie.title" class="col-2 py-2 my-2">
-        <MovieElement
-          :title="movie.title"
-          :original_title="movie.original_title"
-          :language="movie.original_language"
-          :vote="movie.vote_average"
-          />       
-      </div>
+    <div class="main">
+      <SiteMain />
     </div>
   </div>
 </template>
 
 <script>
 
-import axios from 'axios';
-import MovieElement from './components/MovieElement.vue'
+import SiteMain from './components/SiteMain.vue';
 
 export default {
   name: 'App',
   components: {
-    MovieElement
+    SiteMain
   },
   
-  data() {
-    return {
-      movies: [],
-      searchText: "",
-      searchedText: "",
-    }
-  },
-
-  methods: {
-    callApi() {
-      let searchedText = this.searchText;
-      axios
-      .get(`https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=en-US&query=` + searchedText + `&page=1&include_adult=false`)
-      // .get(`https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=en-US&query=dog&page=1&include_adult=false`)
-      .then((response) => {
-        console.log(searchedText);
-        this.movies = response.data.results;
-        console.log(this.movies);
-        console.log(`https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=it-IT&query=` + searchedText + `&page=1&include_adult=true`);
-        // console.log(this.searchText);
-        // console.log(this.api_url);
-      })
-    }
-  }
+  
 
 }
 </script>
