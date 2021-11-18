@@ -2,7 +2,7 @@
   <div id="app">
     <div class="searchbar">
       <input type="text" placeholder="Inserisci una ricerca">
-      <button><i class="fas fa-search"></i></button>
+      <button @click="callApi"><i class="fas fa-search"></i></button>
     </div>
   </div>
 </template>
@@ -19,16 +19,17 @@ export default {
   data() {
     return {
       movies: [],
-      api_url: `https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=it-IT&query=&page=1&include_adult=true`
+      api_url: `https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=it-IT&query=dog&page=1&include_adult=true`
     }
   },
 
   methods: {
     callApi() {
       axios
-      .get
+      .get(this.api_url)
       .then((response) => {
         this.movies = response.data;
+        console.log(this.movies);
       })
     }
   }
