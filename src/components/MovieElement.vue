@@ -1,21 +1,25 @@
 <template>
         
-    <ul class="black_border m-2 height_200">
+    <div class="black_border m-2 height_200">
         <h3>
             {{title}}
         </h3>
         <h5>
             {{original_title}}
         </h5>
-        <img v-bind:src="'https://image.tmdb.org/t/p/w154/' + image" alt="">
+        <img v-bind:src="'https://image.tmdb.org/t/p/w185/' + image" alt="">
+        <img v-show="noImage" src="../assets/JT185.jpg" alt="">
         <div class="text_left py-2">
             <flag class="px-2" :iso="flag" />
-            <span class="px-2">
-                {{vote}}
+            <span v-for="(star, index) in this.stars" :key="id + index">
+                <i class="fas fa-star"></i>
+            </span>
+            <span v-show="noVote" class="">
+                Not voted
             </span>
         </div>
 
-    </ul>
+    </div>
       
 </template>
 
@@ -25,6 +29,10 @@ export default {
     data() {
         return {
             flag: "",
+            starVote: 0,
+            stars: [],
+            noImage: false,
+            noVote: false,
         }
     },
 
@@ -35,6 +43,7 @@ export default {
         image: String,
         vote: Number,
         movie: Array,
+        id: Number,
     },
 
     mounted() {
@@ -46,6 +55,29 @@ export default {
             this.flag = this.language;
             // console.log(this.flag);
         }
+
+        this.starVote = Math.ceil(this.vote / 2);
+        if (this.starVote.isNaN) {
+            this.starVote = 0;
+        }
+
+        console.log(this.starVote);
+
+        if (this.starVote == 0) {
+            this.noVote = true;
+        } else {
+            for (let i = 0; i < this.starVote; i++) {
+                const star = this.starVote[i];
+                this.stars.push(star);
+            }
+        }
+
+
+        if (this.image == null) {
+            this.noImage = true;
+        }
+
+        
 
     }
 }
