@@ -6,10 +6,13 @@
         <div class="d-flex flex-wrap row">
             <div v-for="movie in movies" :key="movie.id" class="col-2 py-2 my-2">
                 <MovieElement
+
+                :result="movie"
                 :title="movie.title"
                 :original_title="movie.original_title"
                 :language="movie.original_language"
                 :vote="movie.vote_average"
+                
                 />       
             </div>
         </div>
