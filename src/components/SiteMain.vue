@@ -34,15 +34,18 @@ export default {
         return {
         movies: [],
         searchText: "",
+        movies_url: 'https://api.themoviedb.org/3/search/movie',
+        api_key: '84b0b6316c205b8b763bc2ee40ce3b0d',
         // searchedText: "",
         }
     },
 
     methods: {
         callApi(searchText) {
-        // let searchedText = searchText;
+        let movieQuery = `${this.movies_url}?api_key=${this.api_key}&language=en-US&query=${searchText}&page=1&include_adult=true`;
+        // console.log(movieQuery);
             axios
-            .get(`https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=en-US&query=` + searchText + `&page=1&include_adult=false`)
+            .get(movieQuery)
             // .get(`https://api.themoviedb.org/3/search/movie?api_key=84b0b6316c205b8b763bc2ee40ce3b0d&language=en-US&query=dog&page=1&include_adult=false`)
             .then((response) => {
                 // console.log(searchedText);
