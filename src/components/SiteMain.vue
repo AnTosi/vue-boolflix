@@ -4,6 +4,9 @@
             @search="callApi"
         />
         <div class="d-flex flex-wrap row">
+            <h2 class="my-3">
+                Movies:
+            </h2>
             <div v-for="movie in movies" :key="movie.id" class="col-2 py-2 my-2">
                 <MovieElement
 
@@ -15,6 +18,18 @@
                 
                 />       
             </div>
+            <h2>TV Shows</h2>
+            <div v-for="tvShow in tv_shows" :key="tvShow.id" class="col-2 py-2 my-2">
+                <TVElement
+
+                :result="tvShow"
+                :title="tvShow.name"
+                :original_title="tvShow.original_name"
+                :language="tvShow.original_language"
+                :vote="tvShow.vote_average"
+                
+                />       
+            </div>
         </div>
     </div>
 </template>
@@ -22,17 +37,21 @@
 <script>
 import MovieElement from './MovieElement.vue';
 import Searchbar from './Searchbar.vue';
+import TVElement from './TVElement.vue';
 import axios from 'axios';
+
 
 export default {
     components: {
         MovieElement,
-        Searchbar
+        Searchbar,
+        TVElement
     },
 
     data() {
         return {
         movies: [],
+        tv_shows: [],
         searchText: "",
         movies_url: 'https://api.themoviedb.org/3/search/movie',
         api_key: '84b0b6316c205b8b763bc2ee40ce3b0d',
@@ -67,8 +86,8 @@ export default {
             axiosTvQuery
             .then((response) => {
 
-                this.tv_url = response.data.results;
-                console.log(this.tv_url);
+                this.tv_shows = response.data.results;
+                console.log(this.tv_shows);
                 }
             )
         }
