@@ -46,38 +46,57 @@ export default {
         id: Number,
     },
 
-    mounted() {
-        // console.log(this.language);
-        if (this.language == 'en') {
-            this.flag = 'gb';
-            // console.log(this.flag);
-        } else {
-            this.flag = this.language;
-            // console.log(this.flag);
-        }
+    methods: {
+        englandLanguageFix(){
+            if (this.language == 'en') {
+                this.flag = 'gb';
+                // console.log(this.flag);
+            } else {
+                this.flag = this.language;
+                // console.log(this.flag);
+            }
+        },
 
-        this.starVote = Math.ceil(this.vote / 2);
-        if (this.starVote.isNaN) {
-            this.starVote = 0;
-        }
+        voteToFive(){
+            this.starVote = Math.ceil(this.vote / 2);
+            if (this.starVote == 0){
+                this.noVote = true;
+            }
+        },
 
-        console.log(this.starVote);
+        noVoteFallback(){
+            if (this.starVote.isNaN) {
+                this.noVote = true;
+                this.starVote = 0;
+            }
+        },
 
-        if (this.starVote == 0) {
-            this.noVote = true;
-        } else {
+        noImageFallback(){
+            if (this.image == null) {
+                this.noImage = true;
+            }
+        },
+
+        starsArray() {
             for (let i = 0; i < this.starVote; i++) {
                 const star = this.starVote[i];
                 this.stars.push(star);
             }
         }
+    },
 
+    mounted() {
+        // console.log(this.language);
 
-        if (this.image == null) {
-            this.noImage = true;
-        }
+        this.englandLanguageFix();
 
+        this.noVoteFallback();
+
+        this.voteToFive();
         
+        this.noImageFallback();
+
+        this.starsArray();
 
     }
 }

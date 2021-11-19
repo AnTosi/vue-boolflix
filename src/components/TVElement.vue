@@ -15,6 +15,9 @@
             <span v-for="(star, index) in this.stars" :key="id + index">
                 <i class="fas fa-star"></i>
             </span>
+            <span v-show="noVote" class="">
+                Not voted
+            </span>
         </div>
          
     </div>
@@ -30,6 +33,7 @@ export default {
             starVote: 0,
             stars: [],
             noImage: false,
+            noVote: false,
         }
     },
 
@@ -43,31 +47,50 @@ export default {
         id: Number,
     },
 
+    methods: {
+
+        englandLanguageFix(){
+            if (this.language == 'en') {
+                this.flag = 'gb';
+                // console.log(this.flag);
+            } else {
+                this.flag = this.language;
+                // console.log(this.flag);
+            }
+        },
+
+        voteToFive(){
+            this.starVote = Math.ceil(this.vote / 2);
+            if (this.starVote == 0){
+                this.noVote = true;
+            }
+        },
+
+        noImageFallback(){
+            if (this.image == null) {
+                this.noImage = true;
+            }
+        },
+
+        starsArray() {
+            for (let i = 0; i < this.starVote; i++) {
+                const star = this.starVote[i];
+                this.stars.push(star);
+            }
+        }
+    },
     mounted() {
         // console.log(this.language);
-        if (this.language == 'en') {
-            this.flag = 'gb';
-            // console.log(this.flag);
-        } else {
-            this.flag = this.language;
-            // console.log(this.flag);
-        }
+        this.englandLanguageFix();
 
-        this.starVote = Math.ceil(this.vote / 2);
-        if (this.starVote.isNaN) {
-            this.starVote = 0;
-        }
+        this.voteToFive();
+        
+        // this.noVoteFallback();
 
-        console.log(this.starVote);
+        this.noImageFallback();
 
-        for (let i = 0; i < this.starVote; i++) {
-            const star = this.starVote[i];
-            this.stars.push(star);
-        }
-
-        if (this.image == null) {
-            this.noImage = true;
-        }
+        this.starsArray();
+        
     }
 }
 </script>
