@@ -62,8 +62,8 @@ export default {
 
     methods: {
         callApi(searchText) {
-            let movieQuery = `${this.movies_url}?api_key=${this.api_key}&language=en-US&query=${searchText}&page=1&include_adult=true`;
-            let tvQuery = `${this.tv_url}?api_key=${this.api_key}&language=en-US&query=${searchText}&page=1&include_adult=true`;
+            let movieQuery = `${this.movies_url}?api_key=${this.api_key}&language=it-IT&query=${searchText}&page=1&include_adult=true`;
+            let tvQuery = `${this.tv_url}?api_key=${this.api_key}&language=it-IT&query=${searchText}&page=1&include_adult=true`;
             const axiosMovieQuery = axios.get(movieQuery);
             const axiosTvQuery = axios.get(tvQuery);
             axiosMovieQuery
