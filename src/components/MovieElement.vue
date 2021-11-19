@@ -1,21 +1,20 @@
 <template>
         
     <ul class="black_border m-2 height_200">
-        <li>
+        <h3>
             {{title}}
-        </li>
-        <li>
+        </h3>
+        <h5>
             {{original_title}}
-        </li>
-        <li>
-            <flag :iso="flag" />
-        </li>
-        <li>
-            {{vote}}
-        </li>
-        <li>
-            {{movie}}
-        </li>          
+        </h5>
+        <img v-bind:src="'https://image.tmdb.org/t/p/w154/' + image" alt="">
+        <div class="text_left py-2">
+            <flag class="px-2" :iso="flag" />
+            <span class="px-2">
+                {{vote}}
+            </span>
+        </div>
+
     </ul>
       
 </template>
@@ -33,8 +32,9 @@ export default {
         title: String,
         original_title: String,
         language: String,
+        image: String,
         vote: Number,
-        movie: Array
+        movie: Array,
     },
 
     mounted() {

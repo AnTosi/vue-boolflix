@@ -13,8 +13,11 @@
                 :result="movie"
                 :title="movie.title"
                 :original_title="movie.original_title"
+                :image="movie.poster_path"
                 :language="movie.original_language"
                 :vote="movie.vote_average"
+                :id="movie.id"
+
                 
                 />       
             </div>
@@ -25,8 +28,10 @@
                 :result="tvShow"
                 :title="tvShow.name"
                 :original_title="tvShow.original_name"
+                :image="tvShow.poster_path"
                 :language="tvShow.original_language"
                 :vote="tvShow.vote_average"
+                :id="tvShow.id"
                 
                 />       
             </div>
