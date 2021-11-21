@@ -1,22 +1,32 @@
 <template>
         
-    <div class="black_border m-2 height_200">
-        <h3>
-            {{title}}
-        </h3>
-        <h5>
-            {{original_title}}
-        </h5>
-        <img v-bind:src="'https://image.tmdb.org/t/p/w185/' + image" alt="">
-        <img v-show="noImage" src="../assets/JT185.jpg" alt="">
-        <div class="text_left py-2">
-            <flag class="px-2" :iso="flag" />
-            <span v-for="(star, index) in this.stars" :key="id + index">
-                <i class="fas fa-star"></i>
-            </span>
-            <span v-show="noVote" class="">
-                Not voted
-            </span>
+    <div  @mouseover="showInfo = true" @mouseleave="showInfo=false" class="m-2 element">
+        <div v-show="!showInfo" class="image">
+            <img v-show="!noImage" v-bind:src="'https://image.tmdb.org/t/p/w342/' + image" alt="">
+            <img class="fallback_image" v-show="noImage" alt="">
+        </div>
+
+        <div v-show="showInfo" class="info">
+            <h3>
+                {{title}}
+            </h3>
+            <h5>
+                {{original_title}}
+            </h5>
+            <div class="text_left py-2">
+                <flag class="px-2" :iso="flag" />
+                <span v-for="(star, index) in this.stars" :key="id + index">
+                    <i class="fas fa-star"></i>
+                </span>
+                <span v-show="noVote" class="">
+                    Not voted
+                </span>
+            </div>
+            <p class="overview">
+                <span class="bold">
+                    Overview:
+                </span> {{overview}}
+            </p>
         </div>
 
     </div>
@@ -33,6 +43,7 @@ export default {
             stars: [],
             noImage: false,
             noVote: false,
+            showInfo: false,
         }
     },
 
@@ -44,6 +55,7 @@ export default {
         vote: Number,
         movie: Array,
         id: Number,
+        overview: String
     },
 
     methods: {
@@ -104,4 +116,33 @@ export default {
 
 <style lang="scss">
     @import '../assets/common.scss';
+    
+    .fallback_image {
+        background-image: url("../assets/JT185.jpg");
+        background-size: cover;
+        height: 516px;
+    }
+
+    .element {
+        border: none;
+        width: 342px;
+        height: 516px;
+        .image img {
+            height: 516px;
+            width: 342px;
+        }
+        .info {
+            
+            height: 515px;
+            width: 342px;
+        }
+
+    }
+    
+    h3 {
+        margin-top: 0;
+        padding-top: 3rem;
+    }
+
+
 </style>

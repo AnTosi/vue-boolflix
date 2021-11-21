@@ -7,8 +7,8 @@
         <h5>
             {{original_title}}
         </h5>
-        <img v-bind:src="'https://image.tmdb.org/t/p/w185/' + image" alt="">
-        <img v-show="noImage" src="../assets/JT185.jpg" alt="">
+        <img v-bind:src="'https://image.tmdb.org/t/p/w342/' + image" alt="">
+        <img class= "fallback_image" v-show="noImage" src="../assets/JT185.jpg" alt="">
         
         <div class="text_left py-2">
             <flag class="px-2" :iso="flag" />
@@ -97,4 +97,9 @@ export default {
 
 <style lang="scss">
     @import '../assets/common.scss';
+
+    .fallback_image {
+        width: 342px;
+        height: 513px;
+    }
 </style>

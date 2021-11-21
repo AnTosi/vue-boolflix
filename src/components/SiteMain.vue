@@ -3,11 +3,11 @@
         <Searchbar 
             @search="callApi"
         />
-        <div class="d-flex flex-wrap row">
-            <h2 class="my-3">
+        <div class="d-flex flex-wrap">
+            <h2 class="my-3 d-block col-12">
                 Movies:
             </h2>
-            <div v-for="movie in movies" :key="movie.id" class="col-2 py-2 my-2">
+            <div v-for="movie in movies" :key="movie.id" class="py-2 my-2">
                 <MovieElement
 
                 :result="movie"
@@ -17,12 +17,12 @@
                 :language="movie.original_language"
                 :vote="movie.vote_average"
                 :id="movie.id"
-
+                :overview="movie.overview"
                 
                 />       
             </div>
             <h2>TV Shows</h2>
-            <div v-for="tvShow in tv_shows" :key="tvShow.id" class="col-2 py-2 my-2">
+            <div v-for="tvShow in tv_shows" :key="tvShow.id" class="col-4 py-2 my-2">
                 <TVElement
 
                 :result="tvShow"
@@ -99,3 +99,10 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+    div.container {
+        max-width: 1440px;
+
+    }
+</style>
