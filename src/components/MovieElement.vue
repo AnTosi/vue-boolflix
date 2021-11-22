@@ -31,6 +31,10 @@
                     </p>
                 </div>
             </div>
+            <p class="mb-2">
+                <span class="bold">Cast:</span>
+                {{castList}}
+            </p>
             <p class="overview my-0">
                 <span class="bold">
                     Overview:
@@ -58,6 +62,7 @@ export default {
             Overview:"",
             api_key: '84b0b6316c205b8b763bc2ee40ce3b0d',
             cast: [],
+            castNames: [],
         }
 
     },
@@ -73,10 +78,12 @@ export default {
         overview: String
     },
 
-    // computed: {
-    //     selectedCast() {
-    
-    // }
+    computed: {
+        castList() {
+            return this.castNames.join(", ")
+        }
+    },
+
     methods: {
         englandLanguageFix(){
             if (this.language == 'en') {
@@ -131,6 +138,13 @@ export default {
 
                 this.cast = response.data.cast.slice(0, 5);
                 console.log(this.cast);
+
+                for (let i = 0; i < this.cast.length; i++) {
+                    const castMember = this.cast[i];
+                    this.castNames.push(castMember.name);
+                    console.log(this.castNames);
+                    
+                }
             })
         },
 

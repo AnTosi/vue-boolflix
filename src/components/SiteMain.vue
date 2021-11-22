@@ -183,4 +183,10 @@ export default {
     .fa-star {
         color: gold;
     }
+
+    .bold {
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+
 </style>
