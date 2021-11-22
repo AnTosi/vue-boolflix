@@ -14,7 +14,7 @@
                     <h2 class="my-3 px-2 my_container text-white">
                         Movies:
                     </h2>
-                    <div class="selectMovie">
+                    <!-- <div class="selectMovie">
                         <label for="filterByGenre">
                             Filter the movies by genre
                         </label>
@@ -24,7 +24,7 @@
                             </option>
                         </select>
 
-                    </div>
+                    </div> -->
                 </div>
                 
                 <div class="my_container d-flex flex-wrap">
@@ -88,8 +88,10 @@ export default {
         searchText: "",
         movies_url: 'https://api.themoviedb.org/3/search/movie',
         api_key: '84b0b6316c205b8b763bc2ee40ce3b0d',
-        tv_url: 'https://api.themoviedb.org/3/search/tv'
+        tv_url: 'https://api.themoviedb.org/3/search/tv',
         // searchedText: "",
+        genres: [],
+        genresName: [],
         }
     },
 
@@ -123,8 +125,32 @@ export default {
                 // console.log(this.tv_shows);
                 }
             )
-        }
-    }
+        },
+
+        // genresMoviesCallApi() {
+        //     for (let i = 0; i < this.movies.length; i++) {
+        //         const movie = this.movies[i];
+        //         let genresMovieQuery = `https://api.themoviedb.org/3/movie/${movie.id}?api_key=${this.api_key}&language=en-US`;
+        //         const axiosGenreMovieQuery = axios.get(genresMovieQuery);
+        //         axiosGenreMovieQuery
+        //         .then((response) => {
+
+        //             this.genres += response.data.genres;
+        //             // console.log(this.genres);
+
+        //             for (let i = 0; i < this.genres.length; i++) {
+        //                 const genreName = this.genres[i].name;
+        //                 this.genresName.push(genreName);
+        //             }
+
+        //             console.log(this.genresName);
+        //         })
+                
+        //     }
+            
+        // }
+    },
+
 }
 </script>
 

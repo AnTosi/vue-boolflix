@@ -173,7 +173,7 @@ export default {
             .then((response) => {
 
                 this.genres = response.data.genres;
-                console.log(this.genres);
+                // console.log(this.genres);
 
                 for (let i = 0; i < this.genres.length; i++) {
                     const genreName = this.genres[i].name;
