@@ -1,40 +1,53 @@
 <template>
-    <div class="container">
-        <Searchbar 
-            @search="callApi"
-        />
-        <div class="d-flex flex-wrap">
-            <h2 class="my-3 d-block col-12">
-                Movies:
-            </h2>
-            <div v-for="movie in movies" :key="movie.id" class="py-2 my-2">
-                <MovieElement
+    <div>
+        <header class="d-flex align-items-center justify-content-between py-2 px-4">
+            <h4>
+                BOOLFLIX
+            </h4>
+            <Searchbar 
+                @search="callApi"
+            />
+        </header>
+        <div class="main">
+            <section class="movies">
+                <h2 class="my-3 px-2 my_container text-white">
+                    Movies:
+                </h2>
+                <div class="my_container d-flex flex-wrap">
+                    <div v-for="movie in movies" :key="movie.id" class="py-2 my-2">
+                        <MovieElement
 
-                :result="movie"
-                :title="movie.title"
-                :original_title="movie.original_title"
-                :image="movie.poster_path"
-                :language="movie.original_language"
-                :vote="movie.vote_average"
-                :id="movie.id"
-                :overview="movie.overview"
-                
-                />       
-            </div>
-            <h2>TV Shows</h2>
-            <div v-for="tvShow in tv_shows" :key="tvShow.id" class="col-4 py-2 my-2">
-                <TVElement
+                        :result="movie"
+                        :title="movie.title"
+                        :original_title="movie.original_title"
+                        :image="movie.poster_path"
+                        :language="movie.original_language"
+                        :vote="movie.vote_average"
+                        :id="movie.id"
+                        :overview="movie.overview"
+                        
+                        />       
+                    </div>
+                </div>
+            </section>
+            <section class="TVshows">
+                <h2 class="my-3 px-2 my_container text-white">TV Shows:</h2>
+                <div class="my_container d-flex flex-wrap">
+                    <div v-for="tvShow in tv_shows" :key="tvShow.id" class="col-4 py-2 my-2">
+                        <TVElement
 
-                :result="tvShow"
-                :title="tvShow.name"
-                :original_title="tvShow.original_name"
-                :image="tvShow.poster_path"
-                :language="tvShow.original_language"
-                :vote="tvShow.vote_average"
-                :id="tvShow.id"
-                
-                />       
-            </div>
+                        :result="tvShow"
+                        :title="tvShow.name"
+                        :original_title="tvShow.original_name"
+                        :image="tvShow.poster_path"
+                        :language="tvShow.original_language"
+                        :vote="tvShow.vote_average"
+                        :id="tvShow.id"
+                        
+                        />       
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </template>
@@ -101,8 +114,30 @@ export default {
 </script>
 
 <style lang="scss">
-    div.container {
-        max-width: 1440px;
 
+    @import "../assets/common.scss";
+    @import "../assets/variables.scss";
+
+    .my_container {
+        max-width: 1440px;
+        margin: auto;
+    }
+
+    section {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    h2 {
+        text-align: left;
+    }
+
+    header {
+        background-color: black;
+    }
+
+    h4 {
+        font-size: 2rem;
+        color: $main-red;
     }
 </style>
