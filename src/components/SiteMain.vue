@@ -105,7 +105,7 @@ export default {
             .then((response) => {
 
                 this.tv_shows = response.data.results;
-                console.log(this.tv_shows);
+                // console.log(this.tv_shows);
                 }
             )
         }

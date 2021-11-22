@@ -26,6 +26,9 @@
                     <span v-show="noVote" class="">
                         Not voted yet
                     </span>
+                    <p>
+
+                    </p>
                 </div>
             </div>
             <p class="overview my-0">
@@ -40,6 +43,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 
     data() {
@@ -51,7 +56,10 @@ export default {
             noVote: false,
             showInfo: false,
             Overview:"",
+            api_key: '84b0b6316c205b8b763bc2ee40ce3b0d',
+            cast: [],
         }
+
     },
 
     props: {
@@ -65,6 +73,10 @@ export default {
         overview: String
     },
 
+    // computed: {
+    //     selectedCast() {
+    
+    // }
     methods: {
         englandLanguageFix(){
             if (this.language == 'en') {
@@ -109,7 +121,19 @@ export default {
             } else {
                 this.Overview = this.overview;
             }
-        }
+        },
+
+        castCallApi(){
+            let castQuery = `https://api.themoviedb.org/3/movie/${this.id}/credits?api_key=${this.api_key}&language=en-US`;
+            const axiosCastQuery = axios.get(castQuery);
+            axiosCastQuery
+            .then((response) => {
+
+                this.cast = response.data.cast.slice(0, 5);
+                console.log(this.cast);
+            })
+        },
+
     },
 
     mounted() {
@@ -126,6 +150,8 @@ export default {
         this.starsArray();
 
         this.noOverviewFallback();
+
+        this.castCallApi();
 
     }
 }
