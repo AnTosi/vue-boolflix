@@ -21,9 +21,12 @@
                     {{flag}}
                 </span>
                 <div class="my-3">
-                    <span class="bold text-white">Vote:</span>
+                    <span class="bold text-white vote">Vote:</span>
                     <span v-for="(star, index) in this.stars" :key="id + index">
                         <i class="fas fa-star"></i>
+                    </span>
+                    <span v-for="(emptyStar, index) in this.emptyStars" :key="id + index + 5">
+                        <i class="far fa-star"></i>
                     </span>
                     <span v-show="noVote" class="">
                         Not voted yet
@@ -58,6 +61,7 @@ export default {
             flag: "",
             starVote: 0,
             stars: [],
+            emptyStars: [],
             noImage: false,
             noVote: false,
             showInfo: false,
@@ -137,6 +141,12 @@ export default {
             for (let i = 0; i < this.starVote; i++) {
                 const star = this.starVote[i];
                 this.stars.push(star);
+            }
+
+            for (let i = 0; i < 5 - this.starVote; i++) {
+                const emptyStar = i;
+                this.emptyStars.push(emptyStar);
+                
             }
         },
 

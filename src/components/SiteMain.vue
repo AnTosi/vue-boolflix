@@ -241,4 +241,8 @@ export default {
         transform: translate(0, -50%);
     }
 
+    span.vote {
+        margin-right: 0.5rem;
+    }
+    
 </style>

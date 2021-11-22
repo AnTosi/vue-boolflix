@@ -21,7 +21,7 @@
                     {{flag}}
                 </span>
                 <div class="py-3">
-                    <span class="bold text-white">Vote:</span>
+                    <span class="bold text-white vote">Vote:</span>
                     <span v-for="(star, index) in this.stars" :key="id + index">
                         <i class="fas fa-star"></i>
                     </span>
