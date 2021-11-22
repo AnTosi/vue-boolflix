@@ -6,15 +6,18 @@
             <img class="fallback_image" v-show="noImage" alt="">
         </div>
 
-        <div v-show="showInfo" class="info">
+        <div v-show="showInfo" class="info px-4 text-white">
             <h3>
                 {{title}}
             </h3>
             <h5>
                 {{original_title}}
             </h5>
-            <div class="text_left py-2">
-                <flag class="px-2" :iso="flag" />
+            <div class="text_left py-3">
+                <flag class="flag" :iso="flag" />
+                <span class="language">
+                    {{flag}}
+                </span>
                 <span v-for="(star, index) in this.stars" :key="id + index">
                     <i class="fas fa-star"></i>
                 </span>
@@ -94,6 +97,12 @@ export default {
                 const star = this.starVote[i];
                 this.stars.push(star);
             }
+        },
+
+        noOverviewFallback(){
+            if (this.overview == "") {
+                this.overview = "Sorry, no overview available"
+            }
         }
     },
 
@@ -110,6 +119,8 @@ export default {
 
         this.starsArray();
 
+        this.noOverviewFallback();
+
     }
 }
 </script>
@@ -117,32 +128,9 @@ export default {
 <style lang="scss">
     @import '../assets/common.scss';
     
-    .fallback_image {
-        background-image: url("../assets/JT185.jpg");
-        background-size: cover;
-        height: 516px;
+    .overview {
+        max-height: 300px;
+        overflow: hidden;
     }
-
-    .element {
-        border: none;
-        width: 342px;
-        height: 516px;
-        .image img {
-            height: 516px;
-            width: 342px;
-        }
-        .info {
-            
-            height: 515px;
-            width: 342px;
-        }
-
-    }
-    
-    h3 {
-        margin-top: 0;
-        padding-top: 3rem;
-    }
-
 
 </style>

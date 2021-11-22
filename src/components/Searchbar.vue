@@ -15,3 +15,21 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+    .searchbar {
+        background-color: white;
+        input {
+            border: none;
+            padding: 5px;
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+            padding-right: 5px;
+            padding-left: 5px;
+            font-size: 1rem;
+        }
+    }
+</style>

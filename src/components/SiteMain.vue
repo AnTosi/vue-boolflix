@@ -140,4 +140,36 @@ export default {
         font-size: 2rem;
         color: $main-red;
     }
+
+    .language {
+        margin-right: 1rem;
+    }
+
+    .fallback_image {
+        background-image: url("../assets/JT185.jpg");
+        background-size: cover;
+        height: 516px;
+    }
+
+    .element {
+        border: none;
+        width: 342px;
+        height: 516px;
+        .image img {
+            height: 516px;
+            width: 342px;
+        }
+        .info {
+            
+            height: 515px;
+            width: 342px;
+            background-color: rgba(0, 0, 0, 0.616);
+        }
+
+    }
+    
+    h3 {
+        margin-top: 0;
+        padding-top: 3rem;
+    }
 </style>
