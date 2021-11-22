@@ -10,9 +10,23 @@
         </header>
         <div class="main">
             <section class="movies">
-                <h2 class="my-3 px-2 my_container text-white">
-                    Movies:
-                </h2>
+                <div>
+                    <h2 class="my-3 px-2 my_container text-white">
+                        Movies:
+                    </h2>
+                    <div class="selectMovie">
+                        <label for="filterByGenre">
+                            Filter the movies by genre
+                        </label>
+                        <select name="filterByGenre" id="filterByGenre">
+                            <option value="genre" v-for="genre in genres" :key="genre">
+                                
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+                
                 <div class="my_container d-flex flex-wrap">
                     <div v-for="movie in movies" :key="movie.id" class="py-2 my-2">
                         <MovieElement
