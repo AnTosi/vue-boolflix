@@ -13,22 +13,25 @@
             <h5>
                 {{original_title}}
             </h5>
-            <div class="text_left py-3">
+            <div class="text_left mt-3">
                 <flag class="flag" :iso="flag" />
                 <span class="language">
                     {{flag}}
                 </span>
-                <span v-for="(star, index) in this.stars" :key="id + index">
-                    <i class="fas fa-star"></i>
-                </span>
-                <span v-show="noVote" class="">
-                    Not voted
-                </span>
+                <div class="py-3">
+                    <span class="bold text-white">Vote:</span>
+                    <span v-for="(star, index) in this.stars" :key="id + index">
+                        <i class="fas fa-star"></i>
+                    </span>
+                    <span v-show="noVote" class="">
+                        Not voted yet
+                    </span>
+                </div>
             </div>
-            <p class="overview">
+            <p class="overview my-0">
                 <span class="bold">
                     Overview:
-                </span> {{overview}}
+                </span> {{Overview}}
             </p>
         </div>
 
@@ -47,6 +50,7 @@ export default {
             noImage: false,
             noVote: false,
             showInfo: false,
+            Overview:"",
         }
     },
 
@@ -101,7 +105,9 @@ export default {
 
         noOverviewFallback(){
             if (this.overview == "") {
-                this.overview = "Sorry, no overview available"
+                this.Overview = "Sorry, no overview available"
+            } else {
+                this.Overview = this.overview;
             }
         }
     },
@@ -128,9 +134,5 @@ export default {
 <style lang="scss">
     @import '../assets/common.scss';
     
-    .overview {
-        max-height: 300px;
-        overflow: hidden;
-    }
 
 </style>

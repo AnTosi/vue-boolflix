@@ -33,7 +33,7 @@
             <section class="TVshows">
                 <h2 class="my-3 px-2 my_container text-white">TV Shows:</h2>
                 <div class="my_container d-flex flex-wrap">
-                    <div v-for="tvShow in tv_shows" :key="tvShow.id" class="col-4 py-2 my-2">
+                    <div v-for="tvShow in tv_shows" :key="tvShow.id" class="py-2 my-2">
                         <TVElement
 
                         :result="tvShow"
@@ -171,5 +171,16 @@ export default {
     h3 {
         margin-top: 0;
         padding-top: 3rem;
+        font-size: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .overview {
+        max-height: 300px;
+        overflow: auto;
+    }
+
+    .fa-star {
+        color: gold;
     }
 </style>
