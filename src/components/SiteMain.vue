@@ -43,6 +43,7 @@
                         :language="tvShow.original_language"
                         :vote="tvShow.vote_average"
                         :id="tvShow.id"
+                        :overview="tvShow.overview"
                         
                         />       
                     </div>
@@ -176,7 +177,7 @@ export default {
     }
 
     .overview {
-        max-height: 300px;
+        max-height: 160px;
         overflow: auto;
     }
 
@@ -187,6 +188,17 @@ export default {
     .bold {
         font-size: 1.1rem;
         font-weight: 700;
+    }
+
+    h6 {
+        background: rgba(255, 235, 205, 0.26);
+        font-size: 2rem;
+        color: black;
+        text-align: center;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translate(0, -50%);
     }
 
 </style>

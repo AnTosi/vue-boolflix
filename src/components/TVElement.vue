@@ -3,7 +3,9 @@
     <div  @mouseover="showInfo = true" @mouseleave="showInfo=false" class="m-2 element">
         <div v-show="!showInfo" class="image">
             <img v-show="!noImage" v-bind:src="'https://image.tmdb.org/t/p/w342/' + image" alt="">
-            <img class="fallback_image" v-show="noImage" alt="">
+            <div class="fallback_image position-relative" v-show="noImage" alt="">
+                <h6 class="py-5 position-absolute">{{title}}</h6>
+            </div>
         </div>
 
         <div v-show="showInfo" class="info px-4 text-white">
@@ -32,6 +34,10 @@
                 <span class="bold">Cast:</span>
                 {{castList}}
             </p>
+            <p class="mb-2">
+                <span class="bold">Genre:</span>
+                {{genresList}}
+            </p>
             <p class="overview">
                 <span class="bold">
                     Overview:
@@ -59,6 +65,8 @@ export default {
             api_key: '84b0b6316c205b8b763bc2ee40ce3b0d',
             cast: [],
             castNames: [],
+            genres: [],
+            genresName: [],
         }
     },
 
@@ -75,9 +83,23 @@ export default {
 
     computed: {
         castList() {
-            return this.castNames.join(", ")
+            if (this.castNames.length == 0) {
+                return "Sorry, the cast is not available"
+            } else {
+                return this.castNames.join(", ")
+            }
+        },
+
+        genresList() {
+            if (this.genresName.length == 0) {
+                return "Sorry, the genre is not available"
+            } else {
+                return this.genresName.join(", ")
+            }
         }
     },
+
+        
 
     methods: {
 
@@ -127,22 +149,39 @@ export default {
         },
 
         castCallApi(){
-            let castQuery = `https://api.themoviedb.org/3/movie/${this.id}/credits?api_key=${this.api_key}&language=en-US`;
+            let castQuery = `https://api.themoviedb.org/3/tv/${this.id}/credits?api_key=${this.api_key}&language=en-US`;
             const axiosCastQuery = axios.get(castQuery);
             axiosCastQuery
             .then((response) => {
 
                 this.cast = response.data.cast.slice(0, 5);
-                console.log(this.cast);
+                // console.log(this.cast);
 
                 for (let i = 0; i < this.cast.length; i++) {
                     const castMember = this.cast[i];
                     this.castNames.push(castMember.name);
-                    console.log(this.castNames);
+                    // console.log(this.castNames);
                     
                 }
             })
         },
+
+        genresCallApi() {
+            let genresQuery = `https://api.themoviedb.org/3/tv/${this.id}?api_key=${this.api_key}&language=en-US`;
+            const axiosCastQuery = axios.get(genresQuery);
+            axiosCastQuery
+            .then((response) => {
+
+                this.genres = response.data.genres;
+                console.log(this.genres);
+
+                for (let i = 0; i < this.genres.length; i++) {
+                    const genreName = this.genres[i].name;
+                    this.genresName.push(genreName);
+                }
+            })
+            
+        }
 
     },
     mounted() {
@@ -160,6 +199,8 @@ export default {
         this.noOverviewFallback();
 
         this.castCallApi();
+
+        this.genresCallApi();
     }
 }
 </script>
