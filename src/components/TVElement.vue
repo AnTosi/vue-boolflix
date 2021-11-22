@@ -28,6 +28,10 @@
                     </span>
                 </div>
             </div>
+            <p class="mb-2">
+                <span class="bold">Cast:</span>
+                {{castList}}
+            </p>
             <p class="overview">
                 <span class="bold">
                     Overview:
@@ -39,6 +43,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 
     data() {
@@ -50,6 +56,9 @@ export default {
             noVote: false,
             showInfo: false,
             Overview:"",
+            api_key: '84b0b6316c205b8b763bc2ee40ce3b0d',
+            cast: [],
+            castNames: [],
         }
     },
 
@@ -62,6 +71,12 @@ export default {
         image: String,
         id: Number,
         overview: String
+    },
+
+    computed: {
+        castList() {
+            return this.castNames.join(", ")
+        }
     },
 
     methods: {
@@ -109,7 +124,26 @@ export default {
             } else {
                 this.Overview = this.overview;
             }
-        }
+        },
+
+        castCallApi(){
+            let castQuery = `https://api.themoviedb.org/3/movie/${this.id}/credits?api_key=${this.api_key}&language=en-US`;
+            const axiosCastQuery = axios.get(castQuery);
+            axiosCastQuery
+            .then((response) => {
+
+                this.cast = response.data.cast.slice(0, 5);
+                console.log(this.cast);
+
+                for (let i = 0; i < this.cast.length; i++) {
+                    const castMember = this.cast[i];
+                    this.castNames.push(castMember.name);
+                    console.log(this.castNames);
+                    
+                }
+            })
+        },
+
     },
     mounted() {
         // console.log(this.language);
@@ -124,6 +158,8 @@ export default {
         this.starsArray();
         
         this.noOverviewFallback();
+
+        this.castCallApi();
     }
 }
 </script>
